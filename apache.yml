@@ -1,0 +1,27 @@
+---
+ - hosts: gow
+   tasks: 
+     - name: Install Apache if not installed
+       ansible.builtin.yum:
+         name: httpd
+         state: present
+
+     - name: start the apache
+       ansible.builtin.service:
+         name: httpd
+         state: started
+
+     - name: changing the portnumber of Apache
+       ansible.builtin.template:
+         src: /etc/ansible/playbooks/httpd.conf.j2
+         dest: /etc/httpd/conf/httpd.conf
+
+     - name: restart the apacheserver
+       ansible.builtin.service:
+         name: httpd
+         state: restarted
+
+     - name: Install git if not installed
+       yum:
+         state: present
+         name: git    

@@ -1,0 +1,11 @@
+---
+- hosts: gow
+  tasks:
+  - name: uninstall the multiple applications
+    ansible.builtin.package:
+      name: "{{ item}}"
+      state: absent
+    with_items: 
+     - git
+     - tree
+     - httpd  

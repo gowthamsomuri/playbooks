@@ -1,0 +1,13 @@
+---
+- hosts: gow
+  gather_facts: false
+  tasks: 
+  - name: create a directory
+    ansible.builtin.file:
+      path: /opt/don3232
+      state: absent
+
+  - name: create a file
+    ansible.builtin.file:
+      path: /opt/don3235
+      state: absent    
