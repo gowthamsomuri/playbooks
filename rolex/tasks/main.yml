@@ -1,0 +1,24 @@
+---
+- name: start the httpd server
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: Install the  git
+  ansible.builtin.yum:
+    name: git
+    state: present
+
+- name: changing the port number
+  ansible.builtin.template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - restart apache
+
+- name: copy the files from am to gow
+  ansible.builtin.copy:
+    src: gow
+    dest: /root
+  
+
